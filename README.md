@@ -1,3 +1,7 @@
+# Description
+this project is part from react nanodegree at udacity, the project is would you rather 
+question for different users
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
