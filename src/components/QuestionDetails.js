@@ -8,7 +8,6 @@ import { Redirect } from 'react-router-dom'
 class QuestionDetails extends Component {
   state = {
     selectedOption: '',
-    redirect: false
   };
 
   radioSelected = (event) => {
@@ -21,16 +20,13 @@ class QuestionDetails extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.userAnswer(this.state.selectedOption);
-    this.setState({ redirect: true })
   };
 
   render() {
-    if (this.state.redirect) {
-        return <Redirect to='/' />
-      }
     const { question, author, answer, totalVotes, valueOne, valuetwo} = this.props;
     const { selectedOption } = this.state;
-    return (
+    return ( author?
+      
       <Row>
         <Col sm="8" md={{ size: 8, offset: 2 }}>
           <Card>
@@ -86,8 +82,8 @@ class QuestionDetails extends Component {
             </CardBody>
           </Card>
         </Col>
-      </Row>
-    );
+      </Row>:<Redirect to='/notfound' />
+            );
   }
 }
 
@@ -102,6 +98,9 @@ function mapStateToProps ({ questions, users, userAuth }, { match }) {
   let answer, valueOne, valuetwo, totalVotes;
   const { id } = match.params;
   const question = questions[id];
+  if(question == undefined){
+    return 
+  }
   if (answers.hasOwnProperty(question.id)) {
     answer = answers[question.id]
   }

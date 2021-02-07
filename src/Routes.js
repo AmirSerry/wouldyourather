@@ -9,16 +9,19 @@ import Signout from './components/Signout'
 import Error404 from './components/Error404'
 
 function Routes(props){
+  console.log(props)
     return <div> 
     <Switch>
       {
-        props.notSignIn ? <Route path='/' exact component={Signin}/> :
+        
+        props.notSignIn ? <Route component={Signin}/> :
           <Fragment>
             <Route path='/' exact component={Home} />
             <Route path='/leaderboard' exact component={Leaderboard} />
             <Route path="/questions/:id" component={QuestionDetails} />
             <Route path='/add' component={AddQuestion}/>
             <Route exact path='/signout' component={Signout} />
+            <Route exact path='/notfound'component={Error404} />
           </Fragment>
       }
       <Route component={Error404} />
